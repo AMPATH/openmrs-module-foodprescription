@@ -63,7 +63,7 @@ public class FoodPrescriptionController {
 		map.addAttribute("foodPackage", allFoodPackage);
 		map.addAttribute("foodWeightRestriction", foodWeightRestriction);
 		
-    	return "/module/foodprescription/fdmConfiguration";
+    	return "/module/foodprescription/configuration";
 	}
     
     @RequestMapping("/module/foodprescription/statistic")
