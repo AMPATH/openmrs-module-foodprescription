@@ -14,13 +14,13 @@
         <bean parent="serviceContext">
                 <property name="moduleService">
                         <list>
-                                <value>org.openmrs.module.fdm.service.FdmService</value> 
+                                <value>org.openmrs.module.foodprescription.service.FdmService</value> 
                                 <bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
                                         <property name="transactionManager"><ref bean="transactionManager"/></property>
                                         <property name="target">
-                                                <bean class="org.openmrs.module.fdm.service.impl.FdmServiceImpl">
-                                                        <property name="fdmDAO">
-                                                                <bean class="org.openmrs.module.fdm.dao.hibernate.HibernateFdmDAO" autowire="byType">
+                                                <bean class="org.openmrs.module.foodprescription.service.impl.FdmServiceImpl">
+                                                        <property name="foodprescriptionDAO">
+                                                                <bean class="org.openmrs.module.foodprescription.dao.hibernate.HibernateFdmDAO" autowire="byType">
                                                                         <property name="sessionFactory"><ref bean="sessionFactory" /></property>
                                                                 </bean>
                                                         </property>

@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
 
-	<class name="org.openmrs.module.fdm.model.FoodProduct" table="food_product">
+	<class name="org.openmrs.module.foodprescription.model.FoodProduct" table="food_product">
 
         <cache usage="read-write"/>
 

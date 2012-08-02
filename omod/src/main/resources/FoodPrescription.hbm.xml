@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
 
-	<class name="org.openmrs.module.fdm.model.FoodPrescription" table="food_prescription">
+	<class name="org.openmrs.module.foodprescription.model.FoodPrescription" table="food_prescription">
 
         <cache usage="read-write"/>
 
@@ -17,13 +17,13 @@
 		<many-to-one name="household" column="household" class="org.openmrs.module.household.model.Household" 
 			property-ref="uuid" not-null="true" />
 		
-		<many-to-one name="foodCombination" column="food_merge" class="org.openmrs.module.fdm.model.FoodCombination" 
+		<many-to-one name="foodCombination" column="food_merge" class="org.openmrs.module.foodprescription.model.FoodCombination" 
 			property-ref="uuid" not-null="true" />
 			
 		<property name="householdMemberCount" type="java.lang.String" 
 			column="currentmembers" not-null="true" />
 		
-		<many-to-one name="foodEncounter" column="food_encounter" class="org.openmrs.module.fdm.model.FoodEncounter" 
+		<many-to-one name="foodEncounter" column="food_encounter" class="org.openmrs.module.foodprescription.model.FoodEncounter" 
 			property-ref="uuid" not-null="true" update="false"/>
 		
 		<property name="prescriptionDate" type="java.util.Date"

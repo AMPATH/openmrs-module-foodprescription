@@ -6,11 +6,11 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 	
-	<changeSet author="jmwogi" id="fdm_disable-foreign-key-checks" dbms="mysql">
+	<changeSet author="jmwogi" id="foodprescription_disable-foreign-key-checks" dbms="mysql">
 		<sql>SET FOREIGN_KEY_CHECKS=0</sql>
     </changeSet>
 	
-	<changeSet id="fdm-12-04-2012:00:01" author="jmwogi">
+	<changeSet id="foodprescription-12-04-2012:00:01" author="jmwogi">
 		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_source"/></not></preConditions>
 		<comment>Creating the food_source table</comment>
 		<createTable tableName="food_source">
@@ -42,7 +42,7 @@
          </modifySql>
 	</changeSet>
 	
-	<changeSet id="fdm-12-04-2012:00:02" author="jmwogi">
+	<changeSet id="foodprescription-12-04-2012:00:02" author="jmwogi">
 		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_product"/></not></preConditions>
 		<comment>Creating the food_product table</comment>
 		<createTable tableName="food_product">
@@ -73,7 +73,7 @@
          </modifySql>
 	</changeSet>
 	
-	<changeSet id="fdm-12-04-2012:00:03" author="jmwogi">
+	<changeSet id="foodprescription-12-04-2012:00:03" author="jmwogi">
 		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_merge"/></not></preConditions>
 		<comment>Creating the food_merge table</comment>
 		<createTable tableName="food_merge">
@@ -111,7 +111,7 @@
         </modifySql>
 	</changeSet>
 	
-	<changeSet id="fdm-12-04-2012:00:04" author="jmwogi">
+	<changeSet id="foodprescription-12-04-2012:00:04" author="jmwogi">
 		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_package"/></not></preConditions>
 		<comment>Creating the food_package table</comment>
 		<createTable tableName="food_package">
@@ -141,7 +141,7 @@
          </modifySql>
 	</changeSet>
 	
-	<changeSet id="fdm-12-04-2012:00:05" author="jmwogi">
+	<changeSet id="foodprescription-12-04-2012:00:05" author="jmwogi">
 		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_pack"/></not></preConditions>
 		<comment>Creating the food_pack table</comment>
 		<createTable tableName="food_pack">
@@ -178,7 +178,7 @@
         </modifySql>
 	</changeSet>
 	
-	<changeSet id="fdm-12-04-2012:00:06" author="jmwogi">
+	<changeSet id="foodprescription-12-04-2012:00:06" author="jmwogi">
 		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_encounter"/></not></preConditions>
 		<comment>Creating the food_encounter table</comment>
 		<createTable tableName="food_encounter">
@@ -222,7 +222,7 @@
         </modifySql>
 	</changeSet>
 	
-	<changeSet id="fdm-12-04-2012:00:07" author="jmwogi">
+	<changeSet id="foodprescription-12-04-2012:00:07" author="jmwogi">
 		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_prescription"/></not></preConditions>
 		<comment>Creating the food_prescription table</comment>
 		<createTable tableName="food_prescription">
@@ -272,7 +272,7 @@
         </modifySql>
 	</changeSet>
 	
-	<changeSet id="fdm-12-04-2012:00:08" author="jmwogi">
+	<changeSet id="foodprescription-12-04-2012:00:08" author="jmwogi">
 		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_restriction"/></not></preConditions>
 		<comment>Creating the food_restriction table</comment>
 		<createTable tableName="food_restriction">
@@ -308,7 +308,7 @@
          </modifySql>
 	</changeSet>
 	
-	<changeSet author="jmwogi" id="fdm_enable-foreign-key-checks" dbms="mysql">
+	<changeSet author="jmwogi" id="foodprescription_enable-foreign-key-checks" dbms="mysql">
 		<sql>SET FOREIGN_KEY_CHECKS=1</sql>
     </changeSet>
 	

@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
 
-	<class name="org.openmrs.module.fdm.model.FoodWeightRestriction" table="food_restriction">
+	<class name="org.openmrs.module.foodprescription.model.FoodWeightRestriction" table="food_restriction">
 
         <cache usage="read-write"/>
 
@@ -14,7 +14,7 @@
 		
 		<property name="uuid" type="string" length="38" not-null="true" unique="true"/>
 		
-		<many-to-one name="foodProduct" column="food_product" class="org.openmrs.module.fdm.model.FoodProduct" 
+		<many-to-one name="foodProduct" column="food_product" class="org.openmrs.module.foodprescription.model.FoodProduct" 
 			property-ref="uuid" not-null="true" />
 			
 		<property name="quantity" type="java.lang.Double" column="quantity" not-null="true" />

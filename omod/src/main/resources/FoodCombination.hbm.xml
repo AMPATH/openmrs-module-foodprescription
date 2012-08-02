@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
 
-	<class name="org.openmrs.module.fdm.model.FoodCombination" table="food_merge">
+	<class name="org.openmrs.module.foodprescription.model.FoodCombination" table="food_merge">
 
         <cache usage="read-write"/>
 
@@ -14,10 +14,10 @@
 		
 		<property name="uuid" type="string" length="38" not-null="true" unique="true"/>
 		
-		<many-to-one name="foodProduct" column="food_product" class="org.openmrs.module.fdm.model.FoodProduct" 
+		<many-to-one name="foodProduct" column="food_product" class="org.openmrs.module.foodprescription.model.FoodProduct" 
 			property-ref="uuid" not-null="true" />
 			
-		<many-to-one name="foodSource" column="food_source" class="org.openmrs.module.fdm.model.FoodSource" 
+		<many-to-one name="foodSource" column="food_source" class="org.openmrs.module.foodprescription.model.FoodSource" 
 			property-ref="uuid" not-null="true" />
 		
 		<property name="dispensable" type="boolean" column="dispensable"

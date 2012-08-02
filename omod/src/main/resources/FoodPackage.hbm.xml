@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
 
-	<class name="org.openmrs.module.fdm.model.FoodPackage" table="food_package">
+	<class name="org.openmrs.module.foodprescription.model.FoodPackage" table="food_package">
 
         <cache usage="read-write"/>
 
@@ -40,7 +40,7 @@
 		<!-- bi-directional one-to-many association to FoodPackageCombination -->
 		<!-- <set name="foodPackageCombination" inverse="true" cascade="all" order-by="id" access="field">
 			<key property-ref="id" column="food_package_id" />
-			<one-to-many class="org.openmrs.module.fdm.model.FoodPackageCombination" />
+			<one-to-many class="org.openmrs.module.foodprescription.model.FoodPackageCombination" />
 		</set> -->
 	</class>
 

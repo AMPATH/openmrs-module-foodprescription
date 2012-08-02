@@ -10,7 +10,7 @@
 	<author>Jonah S. Mwogi, Nicholas Ingosi</author>
 	<description>This module is meant to aid Food Distribution Department to capture prescriptions
 	</description>
-	<activator>org.openmrs.module.fdm.FdmActivator</activator>
+	<activator>org.openmrs.module.foodprescription.FdmActivator</activator>
 	<updateURL>https://dev.openmrs.org/modules/download/@MODULE_ID@/update.rdf</updateURL>
 
 	<!-- This module also works with the 1.6.x branch starting from 1.6.3.17711, but we can't release a
@@ -24,7 +24,7 @@
 	
     <extension>
         <point>org.openmrs.admin.list</point>
-        <class>org.openmrs.module.fdm.ext.FdmAdminExt</class>
+        <class>org.openmrs.module.foodprescription.ext.FdmAdminExt</class>
     </extension>
     
     <!-- Privileges -->
@@ -47,12 +47,12 @@
      <!-- /Privileges -->
     <!-- Global Properties -->
 	<globalProperty>
-		<property>fdm.householdDefinitionCode</property>
+		<property>foodprescription.householdDefinitionCode</property>
 		<defaultValue></defaultValue>
 		<description>Household Definition Code for Food Distribution</description>
 	</globalProperty>
 	<globalProperty>
-		<property>fdm.Statistics_Interval_In_Days</property>
+		<property>foodprescription.Statistics_Interval_In_Days</property>
 		<defaultValue>1</defaultValue>
 		<description>Number of days to retrieve statistics</description>
 	</globalProperty>
@@ -75,8 +75,8 @@
 				<include method="saveEditedQuantity"/>
 				<include method="purgeFoodPackage"/>
 			</create>
-			<convert match="org.openmrs.module.fdm.model.FoodSource" converter="bean" />
-			<convert match="org.openmrs.module.fdm.model.FoodProduct" converter="bean" />
+			<convert match="org.openmrs.module.foodprescription.model.FoodSource" converter="bean" />
+			<convert match="org.openmrs.module.foodprescription.model.FoodProduct" converter="bean" />
 		</allow>
 		<signatures>
 			<![CDATA[
