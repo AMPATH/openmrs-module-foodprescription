@@ -1,0 +1,80 @@
+div.tabscontainer{
+    margin:15px 0px;
+}
+
+div.tabscontainer div.tabs{
+    list-style: none;
+    width: 260px;
+    cursor: pointer;
+    float:left;
+    margin-top: 10px;
+    left: 0px;
+    z-index: 2;
+}
+
+div.tabscontainer div.curvedContainer{
+	margin-left: 259px;
+	border:1px solid #7c7c77;
+	min-height:360px;
+	-moz-border-radius: 13px;
+	border-radius: 13px;
+}
+
+div.tabscontainer div.curvedContainer .tabcontent{
+	display:none;
+	padding:20px;
+	font-size:12px;
+	font-family: "CenturyGothicRegular", "Century Gothic", Arial, Helvetica, sans-serif;
+}
+
+div.tabs div.tab{
+    display: block;
+    height: 58px;
+    background: #eeeeea;
+    border: #d6d6d2 solid 1px;
+    border-top: none;
+    position: relative;
+   	color: #73736b;
+}
+
+div.tabs div.link{
+	padding-left: 20px;
+	padding-top:20px;
+	font-family: "CenturyGothicRegular", "Century Gothic", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+div.tabs div.tab.selected{
+    color: #ffffff;
+    border-right-color: #aeaeaa;
+}
+
+div.tabs div.tab.selected{
+    background: url(../images/menuSelBack.png) repeat-x;
+    border-right-color: #7c7c77;
+}
+
+div.tabs div.tab.first{
+	border-top: #dbdbb7 solid 1px;
+	-moz-border-radius-topleft: 13px;
+	border-top-left-radius: 13px;
+}
+
+div.tabs div.tab.last{
+	-moz-border-radius-bottomleft: 13px;
+	border-bottom-left-radius: 13px;
+}
+
+div.tabs div.tab div.arrow{
+    position: absolute;
+    background: url(../images/homeSelArrow.png) no-repeat;
+    height: 58px;
+    width: 17px;
+    left: 100%;
+    top: 0px;
+    display: none;
+}
+
+div.tabs div.tab.selected div.arrow{
+    display: block;
+}

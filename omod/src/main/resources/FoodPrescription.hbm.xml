@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+
+	<class name="org.openmrs.module.fdm.model.FoodPrescription" table="food_prescription">
+
+        <cache usage="read-write"/>
+
+		<id name="id" type="java.lang.Integer" unsaved-value="0" column="id">
+			<generator class="org.openmrs.api.db.hibernate.NativeIfNotAssignedIdentityGenerator" />
+		</id>
+		
+		<discriminator column="id" insert="false"/>
+		
+		<property name="uuid" type="string" length="38" not-null="true" unique="true"/>
+		
+		<many-to-one name="household" column="household" class="org.openmrs.module.household.model.Household" 
+			property-ref="uuid" not-null="true" />
+		
+		<many-to-one name="foodCombination" column="food_merge" class="org.openmrs.module.fdm.model.FoodCombination" 
+			property-ref="uuid" not-null="true" />
+			
+		<property name="householdMemberCount" type="java.lang.String" 
+			column="currentmembers" not-null="true" />
+		
+		<many-to-one name="foodEncounter" column="food_encounter" class="org.openmrs.module.fdm.model.FoodEncounter" 
+			property-ref="uuid" not-null="true" update="false"/>
+		
+		<property name="prescriptionDate" type="java.util.Date"
+			column="prescription_datetime" not-null="true" length="19" />
+			
+		<many-to-one name="provider" class="org.openmrs.Person" />
+		
+		<property name="picked" type="boolean" column="picked"
+			length="1" not-null="true" />
+		
+		<property name="quantity" type="java.lang.Double" column="quantity"/>
+		
+		<property name="serialno" type="java.lang.Integer" column="serialno" 
+			not-null="true" />
+		
+		<many-to-one name="creator" class="org.openmrs.User" />
+
+		<property name="dateCreated" type="java.util.Date"
+			column="date_created" not-null="true" length="19" />
+
+		<many-to-one name="changedBy" class="org.openmrs.User" column="changed_by" />
+
+		<property name="dateChanged" type="java.util.Date"
+			column="date_changed" length="19" />
+
+		<many-to-one name="voidedBy" class="org.openmrs.User" column="voided_by" />
+
+		<property name="dateVoided" type="java.util.Date"
+			column="date_voided" length="19" />
+
+		<property name="voidReason" type="java.lang.String"
+			column="void_reason" length="255" />
+
+		<property name="voided" type="boolean" column="voided"
+			length="1" not-null="true" />
+			
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+/* ---- Table ---- */
+
+table {
+	border-collapse:collapse;
+	margin-bottom:15px;
+	width:98%;
+	}
+	
+	caption {
+		text-align:left;
+		font-size:15px;
+		padding-bottom:10px;
+		}
+	
+	table.lineTable td,
+	table.lineTable th {
+		padding:5px;
+		border:1px solid #CDCDCD;
+		border-width:0 0px 1px 0;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		}
+		
+	thead th {
+		background:#dddddd;
+		}
+			
+		thead th[colspan],
+		thead th[rowspan] {
+			background:#cccccc;
+			}
+		
+	tbody th,
+	tfoot th {
+		text-align:left;
+		background:#dddddd;
+		}
+		
+	.highlight,
+	tfoot td {
+		text-align: left;
+		background:#eeeeee;
+		}
+		
+	tfoot th {
+		background:#b0cc7f;
+		}
+		
+	tfoot td {
+		background:#d7e1c5;
+		font-weight:bold;
+		}
+			
+	tbody tr.odd td.highlight { 
+		background:#ffffcc;
+		}

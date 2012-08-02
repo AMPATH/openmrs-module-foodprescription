@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	
+	<changeSet author="jmwogi" id="fdm_disable-foreign-key-checks" dbms="mysql">
+		<sql>SET FOREIGN_KEY_CHECKS=0</sql>
+    </changeSet>
+	
+	<changeSet id="fdm-12-04-2012:00:01" author="jmwogi">
+		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_source"/></not></preConditions>
+		<comment>Creating the food_source table</comment>
+		<createTable tableName="food_source">
+			<column name="id" type="int" autoIncrement="true"><constraints primaryKey="true" nullable="false"/></column>
+			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true"/></column>
+			<column name="code" type="varchar(50)"><constraints nullable="false" /></column>
+			<column name="name" type="varchar(255)"><constraints nullable="false" /></column>
+			<column name="description" type="varchar(1000)"/>
+			<column name="creator" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="date_created" type="datetime"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="retired" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="retired_by" type="int(11)"/>
+			<column name="date_retired" type="datetime"/>
+			<column name="retire_reason" type="varchar(255)" defaultValue="null"/>
+		</createTable>
+		<addForeignKeyConstraint constraintName="food_source_creator_fk"
+             baseTableName="food_source" baseColumnNames="creator" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_source_changed_by_fk"
+             baseTableName="food_source" baseColumnNames="changed_by" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_source_retired_by_fk"
+             baseTableName="food_source" baseColumnNames="retired_by" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <modifySql dbms="mssql">
+            <replace replace="CHAR(38)" with="UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()"/>
+         </modifySql>
+	</changeSet>
+	
+	<changeSet id="fdm-12-04-2012:00:02" author="jmwogi">
+		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_product"/></not></preConditions>
+		<comment>Creating the food_product table</comment>
+		<createTable tableName="food_product">
+			<column name="id" type="int" autoIncrement="true"><constraints primaryKey="true" nullable="false"/></column>
+			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true"/></column>
+			<column name="name" type="varchar(255)"><constraints nullable="false" /></column>
+			<column name="individualized" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="creator" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="date_created" type="datetime"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="retired" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="retired_by" type="int(11)"/>
+			<column name="date_retired" type="datetime"/>
+			<column name="retire_reason" type="varchar(255)" defaultValue="null"/>
+		</createTable>
+		<addForeignKeyConstraint constraintName="food_product_creator_fk"
+             baseTableName="food_product" baseColumnNames="creator" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_product_changed_by_fk"
+             baseTableName="food_product" baseColumnNames="changed_by" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_product_retired_by_fk"
+             baseTableName="food_product" baseColumnNames="retired_by" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <modifySql dbms="mssql">
+            <replace replace="CHAR(38)" with="UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()"/>
+         </modifySql>
+	</changeSet>
+	
+	<changeSet id="fdm-12-04-2012:00:03" author="jmwogi">
+		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_merge"/></not></preConditions>
+		<comment>Creating the food_merge table</comment>
+		<createTable tableName="food_merge">
+			<column name="id" type="int" autoIncrement="true"><constraints primaryKey="true" nullable="false"/></column>
+			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true"/></column>
+			<column name="food_source" type="char(38)"><constraints nullable="false"/></column>
+			<column name="food_product" type="char(38)"><constraints nullable="false"/></column>
+			<column name="dispensable" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="creator" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="date_created" type="datetime"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="voided" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="voided_by" type="int(11)"/>
+			<column name="date_voided" type="datetime"/>
+			<column name="void_reason" type="varchar(255)" defaultValue="null"/>
+		</createTable>
+		<addForeignKeyConstraint constraintName="food_merge_source_fk"
+            baseTableName="food_merge" baseColumnNames="food_source" referencedTableName="food_source"
+            referencedColumnNames="uuid" />
+        <addForeignKeyConstraint constraintName="food_merge_product_by_fk"
+            baseTableName="food_merge" baseColumnNames="food_product" referencedTableName="food_product"
+            referencedColumnNames="uuid" />
+		<addForeignKeyConstraint constraintName="food_merge_creator_fk"
+            baseTableName="food_merge" baseColumnNames="creator" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="food_merge_changed_by_fk"
+            baseTableName="food_merge" baseColumnNames="changed_by" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="food_merge_voided_by_fk"
+            baseTableName="food_merge" baseColumnNames="voided_by" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <modifySql dbms="mssql">
+           <replace replace="CHAR(38)" with="UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()"/>
+        </modifySql>
+	</changeSet>
+	
+	<changeSet id="fdm-12-04-2012:00:04" author="jmwogi">
+		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_package"/></not></preConditions>
+		<comment>Creating the food_package table</comment>
+		<createTable tableName="food_package">
+		<column name="id" type="int" autoIncrement="true"><constraints primaryKey="true" nullable="false"/></column>
+			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true"/></column>
+			<column name="name" type="varchar(255)"><constraints nullable="false" /></column>
+			<column name="creator" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="date_created" type="datetime"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="retired" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="retired_by" type="int(11)"/>
+			<column name="date_retired" type="datetime"/>
+			<column name="retire_reason" type="varchar(255)" defaultValue="null"/>
+		</createTable>
+		<addForeignKeyConstraint constraintName="food_package_creator_fk"
+             baseTableName="food_package" baseColumnNames="creator" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_package_changed_by_fk"
+             baseTableName="food_package" baseColumnNames="changed_by" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_package_retired_by_fk"
+             baseTableName="food_package" baseColumnNames="retired_by" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <modifySql dbms="mssql">
+            <replace replace="CHAR(38)" with="UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()"/>
+         </modifySql>
+	</changeSet>
+	
+	<changeSet id="fdm-12-04-2012:00:05" author="jmwogi">
+		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_pack"/></not></preConditions>
+		<comment>Creating the food_pack table</comment>
+		<createTable tableName="food_pack">
+			<column name="id" type="int" autoIncrement="true"><constraints primaryKey="true" nullable="false"/></column>
+			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true"/></column>
+			<column name="food_package" type="char(38)"><constraints nullable="false"/></column>
+			<column name="food_merge" type="char(38)"><constraints nullable="false"/></column>
+			<column name="creator" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="date_created" type="datetime"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="voided" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="voided_by" type="int(11)"/>
+			<column name="date_voided" type="datetime"/>
+			<column name="void_reason" type="varchar(255)" defaultValue="null"/>
+		</createTable>
+		<addForeignKeyConstraint constraintName="food_pack_package_fk"
+            baseTableName="food_pack" baseColumnNames="food_package" referencedTableName="food_package"
+            referencedColumnNames="uuid" />
+        <!-- <addForeignKeyConstraint constraintName="food_pack_merge_by_fk"
+            baseTableName="food_pack" baseColumnNames="food_merge" referencedTableName="food_merge"
+            referencedColumnNames="uuid" /> -->
+		<addForeignKeyConstraint constraintName="food_pack_creator_fk"
+            baseTableName="food_pack" baseColumnNames="creator" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="food_pack_changed_by_fk"
+            baseTableName="food_pack" baseColumnNames="changed_by" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="food_pack_voided_by_fk"
+            baseTableName="food_pack" baseColumnNames="voided_by" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <modifySql dbms="mssql">
+           <replace replace="CHAR(38)" with="UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()"/>
+        </modifySql>
+	</changeSet>
+	
+	<changeSet id="fdm-12-04-2012:00:06" author="jmwogi">
+		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_encounter"/></not></preConditions>
+		<comment>Creating the food_encounter table</comment>
+		<createTable tableName="food_encounter">
+			<column name="id" type="int" autoIncrement="true"><constraints primaryKey="true" nullable="false"/></column>
+			<column name="uuid" type="char(38)" defaultValue="0"><constraints nullable="false" unique="true"/></column>
+			<column name="household" type="char(38)" defaultValue="0"><constraints nullable="false"/></column>
+			<column name="location" type="char(38)" defaultValue="0"><constraints nullable="false"/></column>
+			<column name="encounter_datetime" type="datetime"/>
+			<column name="provider" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="picked" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="serialno" type="int(11)" defaultValue="0"><constraints nullable="false" unique="true"/></column>
+			<column name="creator" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="date_created" type="datetime"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="voided" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="voided_by" type="int(11)"/>
+			<column name="date_voided" type="datetime"/>
+			<column name="void_reason" type="varchar(255)" defaultValue="null"/>
+		</createTable>
+		<addForeignKeyConstraint constraintName="food_encounter_household_fk"
+            baseTableName="food_encounter" baseColumnNames="household" referencedTableName="household"
+            referencedColumnNames="uuid" />
+        <addForeignKeyConstraint constraintName="food_encounter_location_fk"
+            baseTableName="food_encounter" baseColumnNames="location" referencedTableName="location"
+            referencedColumnNames="uuid" />
+		<addForeignKeyConstraint constraintName="food_encounter_provider_fk"
+            baseTableName="food_encounter" baseColumnNames="provider" referencedTableName="person"
+            referencedColumnNames="person_id" />
+		<addForeignKeyConstraint constraintName="food_encounter_creator_fk"
+            baseTableName="food_encounter" baseColumnNames="creator" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="food_encounter_changed_by_fk"
+            baseTableName="food_encounter" baseColumnNames="changed_by" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="food_encounter_voided_by_fk"
+            baseTableName="food_encounter" baseColumnNames="voided_by" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <modifySql dbms="mssql">
+           <replace replace="CHAR(38)" with="UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()"/>
+        </modifySql>
+	</changeSet>
+	
+	<changeSet id="fdm-12-04-2012:00:07" author="jmwogi">
+		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_prescription"/></not></preConditions>
+		<comment>Creating the food_prescription table</comment>
+		<createTable tableName="food_prescription">
+			<column name="id" type="int" autoIncrement="true"><constraints primaryKey="true" nullable="false"/></column>
+			<column name="uuid" type="char(38)" defaultValue="0"><constraints nullable="false" unique="true"/></column>
+			<column name="household" type="char(38)" defaultValue="0"><constraints nullable="false"/></column>
+			<column name="food_merge" type="char(38)" defaultValue="0"><constraints nullable="false"/></column>
+			<column name="food_encounter" type="char(38)" defaultValue="0"><constraints nullable="false"/></column>
+			<column name="currentmembers" type="varchar(255)"><constraints nullable="false"/></column>
+			<column name="prescription_datetime" type="datetime"/>
+			<column name="provider" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="picked" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="quantity" type="double"/>
+			<column name="serialno" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="creator" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="date_created" type="datetime"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="voided" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="voided_by" type="int(11)"/>
+			<column name="date_voided" type="datetime"/>
+			<column name="void_reason" type="varchar(255)" defaultValue="null"/>
+		</createTable>
+		<addForeignKeyConstraint constraintName="food_prescription_household_fk"
+            baseTableName="food_prescription" baseColumnNames="household" referencedTableName="household"
+            referencedColumnNames="uuid" />
+        <addForeignKeyConstraint constraintName="food_prescription_food_merge_fk"
+            baseTableName="food_prescription" baseColumnNames="food_merge" referencedTableName="food_merge"
+            referencedColumnNames="uuid" />
+        <addForeignKeyConstraint constraintName="food_prescription_food_encounter_fk"
+            baseTableName="food_prescription" baseColumnNames="food_encounter" referencedTableName="food_encounter"
+            referencedColumnNames="uuid" />
+		<addForeignKeyConstraint constraintName="food_prescription_provider_fk"
+            baseTableName="food_prescription" baseColumnNames="provider" referencedTableName="person"
+            referencedColumnNames="person_id" />
+		<addForeignKeyConstraint constraintName="food_prescription_creator_fk"
+            baseTableName="food_prescription" baseColumnNames="creator" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="food_prescription_changed_by_fk"
+            baseTableName="food_prescription" baseColumnNames="changed_by" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <addForeignKeyConstraint constraintName="food_prescription_voided_by_fk"
+            baseTableName="food_prescription" baseColumnNames="voided_by" referencedTableName="users"
+            referencedColumnNames="user_id" />
+        <modifySql dbms="mssql">
+           <replace replace="CHAR(38)" with="UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()"/>
+        </modifySql>
+	</changeSet>
+	
+	<changeSet id="fdm-12-04-2012:00:08" author="jmwogi">
+		<preConditions onFail="MARK_RAN"><not><tableExists tableName="food_restriction"/></not></preConditions>
+		<comment>Creating the food_restriction table</comment>
+		<createTable tableName="food_restriction">
+			<column name="id" type="int" autoIncrement="true"><constraints primaryKey="true" nullable="false"/></column>
+			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true"/></column>
+			<column name="food_product" type="char(38)"><constraints nullable="false" /></column>
+			<column name="quantity" type="double"><constraints nullable="false" /></column>
+			<column name="start_age" type="double"><constraints nullable="true" /></column>
+			<column name="stop_age" type="double"><constraints nullable="true" /></column>
+			<column name="creator" type="int(11)" defaultValue="0"><constraints nullable="false" /></column>
+			<column name="date_created" type="datetime"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="changed_by" type="int(11)"/>
+			<column name="retired" defaultValueBoolean="false" type="BOOLEAN"><constraints nullable="false"/></column>
+			<column name="retired_by" type="int(11)"/>
+			<column name="date_retired" type="datetime"/>
+			<column name="retire_reason" type="varchar(255)" defaultValue="null"/>
+		</createTable>
+		<addForeignKeyConstraint constraintName="food_restriction_creator_fk"
+             baseTableName="food_restriction" baseColumnNames="creator" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_restriction_changed_by_fk"
+             baseTableName="food_restriction" baseColumnNames="changed_by" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_restriction_retired_by_fk"
+             baseTableName="food_restriction" baseColumnNames="retired_by" referencedTableName="users"
+             referencedColumnNames="user_id" />
+         <addForeignKeyConstraint constraintName="food_restriction_product_by_fk"
+            baseTableName="food_restriction" baseColumnNames="food_product" referencedTableName="food_product"
+            referencedColumnNames="uuid" />
+         <modifySql dbms="mssql">
+            <replace replace="CHAR(38)" with="UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID()"/>
+         </modifySql>
+	</changeSet>
+	
+	<changeSet author="jmwogi" id="fdm_enable-foreign-key-checks" dbms="mysql">
+		<sql>SET FOREIGN_KEY_CHECKS=1</sql>
+    </changeSet>
+	
+</databaseChangeLog>
