@@ -1,23 +1,23 @@
 /**
  * 
  */
-package org.openmrs.module.fdm.service.impl;
+package org.openmrs.module.foodprescription.service.impl;
 
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.impl.BaseOpenmrsService;
-import org.openmrs.module.fdm.dao.FdmDAO;
-import org.openmrs.module.fdm.model.FoodCombination;
-import org.openmrs.module.fdm.model.FoodEncounter;
-import org.openmrs.module.fdm.model.FoodPackage;
-import org.openmrs.module.fdm.model.FoodPackageCombination;
-import org.openmrs.module.fdm.model.FoodPrescription;
-import org.openmrs.module.fdm.model.FoodProduct;
-import org.openmrs.module.fdm.model.FoodSource;
-import org.openmrs.module.fdm.model.FoodWeightRestriction;
-import org.openmrs.module.fdm.service.FdmService;
+import org.openmrs.module.foodprescription.dao.FdmDAO;
+import org.openmrs.module.foodprescription.model.FoodCombination;
+import org.openmrs.module.foodprescription.model.FoodEncounter;
+import org.openmrs.module.foodprescription.model.FoodPackage;
+import org.openmrs.module.foodprescription.model.FoodPackageCombination;
+import org.openmrs.module.foodprescription.model.FoodPrescription;
+import org.openmrs.module.foodprescription.model.FoodProduct;
+import org.openmrs.module.foodprescription.model.FoodSource;
+import org.openmrs.module.foodprescription.model.FoodWeightRestriction;
+import org.openmrs.module.foodprescription.service.FdmService;
 import org.openmrs.module.household.model.Household;
 
 

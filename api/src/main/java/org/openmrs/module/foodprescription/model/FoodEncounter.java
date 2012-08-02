@@ -1,4 +1,4 @@
-package org.openmrs.module.fdm.model;
+package org.openmrs.module.foodprescription.model;
 
 import java.util.ArrayList;
 import java.util.Date;

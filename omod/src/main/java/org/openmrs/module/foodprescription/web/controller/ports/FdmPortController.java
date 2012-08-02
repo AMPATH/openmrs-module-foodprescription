@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.openmrs.module.fdm.web.controller.ports;
+package org.openmrs.module.foodprescription.web.controller.ports;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,7 +11,7 @@ import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.fdm.model.*;
 import org.openmrs.module.fdm.service.FdmService;
-import org.openmrs.module.fdm.web.dwr.DWRFoodService;
+import org.openmrs.module.foodprescription.web.dwr.DWRFoodService;
 import org.openmrs.module.household.model.Household;
 import org.openmrs.module.household.model.HouseholdMembership;
 import org.openmrs.module.household.service.HouseholdService;

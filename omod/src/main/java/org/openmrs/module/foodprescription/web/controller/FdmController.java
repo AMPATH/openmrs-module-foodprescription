@@ -1,4 +1,4 @@
-package org.openmrs.module.fdm.web.controller;
+package org.openmrs.module.foodprescription.web.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;

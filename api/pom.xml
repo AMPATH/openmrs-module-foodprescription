@@ -36,9 +36,7 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>household</artifactId>
-			<version>1.0.1</version>
-			<type>jar</type>
-			<scope>provided</scope>
+			<type>pom</type>
 		</dependency>
 	</dependencies>
 </project>

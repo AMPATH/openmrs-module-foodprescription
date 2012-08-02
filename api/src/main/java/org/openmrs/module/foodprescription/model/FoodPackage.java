@@ -1,4 +1,4 @@
-package org.openmrs.module.fdm.model;
+package org.openmrs.module.foodprescription.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,7 +7,7 @@ import java.util.Set;
 
 import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.fdm.service.FdmService;
+import org.openmrs.module.foodprescription.service.FdmService;
 
 
 public class FoodPackage extends BaseOpenmrsMetadata{

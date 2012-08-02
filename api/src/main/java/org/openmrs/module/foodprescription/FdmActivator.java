@@ -1,4 +1,4 @@
-package org.openmrs.module.fdm;
+package org.openmrs.module.foodprescription;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

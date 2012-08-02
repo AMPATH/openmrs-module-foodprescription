@@ -1,4 +1,4 @@
-package org.openmrs.module.fdm.web.dwr;
+package org.openmrs.module.foodprescription.web.dwr;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;

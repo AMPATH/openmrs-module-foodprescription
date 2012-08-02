@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.openmrs.module.fdm.ext;
+package org.openmrs.module.foodprescription.ext;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

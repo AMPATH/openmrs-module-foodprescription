@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.openmrs.module.fdm.dao.hibernate;
+package org.openmrs.module.foodprescription.dao.hibernate;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,15 +16,15 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.DAOException;
-import org.openmrs.module.fdm.dao.FdmDAO;
-import org.openmrs.module.fdm.model.FoodCombination;
-import org.openmrs.module.fdm.model.FoodEncounter;
-import org.openmrs.module.fdm.model.FoodPackage;
-import org.openmrs.module.fdm.model.FoodPackageCombination;
-import org.openmrs.module.fdm.model.FoodPrescription;
-import org.openmrs.module.fdm.model.FoodProduct;
-import org.openmrs.module.fdm.model.FoodSource;
-import org.openmrs.module.fdm.model.FoodWeightRestriction;
+import org.openmrs.module.foodprescription.dao.FdmDAO;
+import org.openmrs.module.foodprescription.model.FoodCombination;
+import org.openmrs.module.foodprescription.model.FoodEncounter;
+import org.openmrs.module.foodprescription.model.FoodPackage;
+import org.openmrs.module.foodprescription.model.FoodPackageCombination;
+import org.openmrs.module.foodprescription.model.FoodPrescription;
+import org.openmrs.module.foodprescription.model.FoodProduct;
+import org.openmrs.module.foodprescription.model.FoodSource;
+import org.openmrs.module.foodprescription.model.FoodWeightRestriction;
 import org.openmrs.module.household.model.Household;
 
 

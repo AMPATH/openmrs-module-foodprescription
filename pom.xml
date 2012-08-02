@@ -63,7 +63,7 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>household</artifactId>
 				<version>1.0.1</version>
-				<type>jar</type>
+				<type>pom</type>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
