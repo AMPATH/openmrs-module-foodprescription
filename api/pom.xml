@@ -35,8 +35,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>household</artifactId>
-			<type>pom</type>
+			<artifactId>household-api</artifactId>
+			<type>jar</type>
 		</dependency>
 	</dependencies>
 </project>

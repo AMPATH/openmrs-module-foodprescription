@@ -26,6 +26,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.openmrs.module.foodprescription.model.FoodCombination;
+import org.openmrs.module.foodprescription.model.FoodEncounter;
+import org.openmrs.module.foodprescription.model.FoodPackage;
+import org.openmrs.module.foodprescription.model.FoodPackageCombination;
+import org.openmrs.module.foodprescription.model.FoodPrescription;
+import org.openmrs.module.foodprescription.model.FoodProduct;
+import org.openmrs.module.foodprescription.model.FoodSource;
+import org.openmrs.module.foodprescription.model.FoodWeightRestriction;
 
 /**
  * @author jmwogi
