@@ -3,19 +3,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>fdm</artifactId>
+		<artifactId>foodprescription</artifactId>
 		<version>0.0.1</version>
 	</parent>
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>fdm-omod</artifactId>
+	<artifactId>foodprescription-omod</artifactId>
 	<packaging>omod</packaging>
-	<name>Food Distribution Module OMOD</name>
+	<name>Food Prescription Module OMOD</name>
 	<description>OpenMRS module project for Module</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
-			<artifactId>fdm-api</artifactId>
+			<artifactId>foodprescription-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>

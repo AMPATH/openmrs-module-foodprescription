@@ -3,18 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>fdm</artifactId>
+	<artifactId>foodprescription</artifactId>
 	<version>0.0.1</version>
 	<packaging>pom</packaging>
 	<name>Food Prescription Module</name>
 	<description>Food Prescription module to be used by the Food Distribution department</description>
 
 	<url>http://openmrs.org</url>
-
-	<ciManagement>
-	</ciManagement>
-	<scm>
-	</scm>
 
 	<modules>
 		<module>api</module>

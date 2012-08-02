@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>fdm</artifactId>
+		<artifactId>foodprescription</artifactId>
 		<version>0.0.1</version>
 	</parent>
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>fdm-api</artifactId>
+	<artifactId>foodprescription-api</artifactId>
 	<packaging>jar</packaging>
-	<name>Food Distribution Module API</name>
-	<description>API project for Food Distribution Module</description>
+	<name>Food Prescription Module API</name>
+	<description>API project for Food Prescription Module</description>
 
 	<dependencies>
 		<dependency>
