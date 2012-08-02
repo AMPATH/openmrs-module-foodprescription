@@ -8,7 +8,7 @@
 	<openmrs:htmlInclude file="/scripts/jquery-ui/js/jquery-ui-timepicker-i18n.js" />
 	<link href="<openmrs:contextPath/>/scripts/jquery-ui/css/<spring:theme code='jqueryui.theme.name' />/jquery-ui.custom.css" type="text/css" rel="stylesheet" />
 </c:if>
-<link href="${pageContext.request.contextPath}/moduleResources/fdm/css/css-table.css" type="text/css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/moduleResources/foodprescription/css/css-table.css" type="text/css" rel="stylesheet" />
 <style>
 	#cont, #cont2{
 		padding:10px 10px; 
@@ -60,7 +60,7 @@ function selectProvider(userid,provider){
 }
 function getFoodPack(){
 	var packageID = document.getElementById("pack").value;
-	$j.get("ports/fdmFoodPrescriptionPackPort.form?foodPack=" + packageID + "&hhmid=" + ${membershipID},
+	$j.get("ports/foodPackagePort.form?foodPack=" + packageID + "&hhmid=" + ${membershipID},
 			function(data){
 				$j('#divPack').html(data);
 			}
@@ -82,7 +82,7 @@ function savePrescription(){
 }
 function returnPrescription(data){
 	var householdID = ${hid};
-	$j.get("ports/fdmEnteredFoodEncounterPort.form?householdID=" + householdID,
+	$j.get("ports/enteredFoodEncounterPort.form?householdID=" + householdID,
 			function(dat){
 				$j('#cont2').html(dat);
 			}
@@ -99,7 +99,7 @@ function returnPrescription(data){
 function pullVoidedFC(){
 	var valSource = document.getElementById("foodSourceChange").value;
 	
-	$j.get("ports/fdmFoodAdditionPickPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
+	$j.get("ports/foodAdditionPickPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
 			function(dat){
 				$j('#idFoodMap').html(dat);
 			}
@@ -149,7 +149,7 @@ function pullVoidedFC(){
 				  			<td class="tdClass">
 				  				 <c:choose>
 	                                <c:when test="${householdMembers.householdMembershipHeadship }">
-	                                    <img src="${pageContext.request.contextPath}/moduleResources/fdm/images/tick.png" alt="[HEAD/INDEX]" />
+	                                    <img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/tick.png" alt="[HEAD/INDEX]" />
 	                                </c:when>
 	                                <c:otherwise>
 	                                </c:otherwise>
@@ -221,7 +221,7 @@ function pullVoidedFC(){
 					$j('#idAlteredPick').hide();
 				});
 				function popPrescrip(id){
-					$j.get("ports/fdmSavedPrescriptionPort.form?encounter=" + id,
+					$j.get("ports/savedPrescriptionPort.form?encounter=" + id,
 							function(dat){
 								$j('#popPrescription').html(dat);
 								$j('#popPrescription').show();
@@ -254,7 +254,7 @@ function pullVoidedFC(){
 				function pullVoidedFCAdd(){
 					var valSource = document.getElementById("foodSourceAdd").value;
 					
-					$j.get("ports/fdmFoodAdditionPickAddPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
+					$j.get("ports/foodAdditionPickAddPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
 							function(dat){
 								$j('#idFoodMapAdd').html(dat);
 							}
@@ -394,7 +394,7 @@ function pullVoidedFC(){
 									<th>${ind.index + 1}
 										<c:choose>
 					                        <c:when test="${foodpack.foodCombination.foodProduct.individualized}">
-										 		<img onclick="javascript:showDivHere('${foodpack.foodCombination.id}')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/individual.png" alt="Populate individuals" />
+										 		<img onclick="javascript:showDivHere('${foodpack.foodCombination.id}')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/individual.png" alt="Populate individuals" />
 										 	</c:when>
 					                        <c:otherwise>
 					                        </c:otherwise>
@@ -412,7 +412,7 @@ function pullVoidedFC(){
 															<td>
 																<c:choose>
 									                                <c:when test="${householdMembers.householdMembershipHeadship }">
-									                                    <img src="${pageContext.request.contextPath}/moduleResources/fdm/images/tick.png" alt="[HEAD/INDEX]" />
+									                                    <img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/tick.png" alt="[HEAD/INDEX]" />
 									                                </c:when>
 									                                <c:otherwise>
 									                                </c:otherwise>

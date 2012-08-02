@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 @Transactional
-public interface FdmService extends OpenmrsService{
+public interface FoodPrescriptionService extends OpenmrsService{
 	
 	public boolean saveFoodProduct(FoodProduct foodProduct);
 	@Transactional(readOnly = true)

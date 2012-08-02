@@ -1,8 +1,8 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/moduleResources/fdm/js/jquery-1.5.2.min.js"></script>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/moduleResources/fdm/js/style-table.js" /> --%>
-<link href="${pageContext.request.contextPath}/moduleResources/fdm/css/css-table.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/moduleResources/foodprescription/js/jquery-1.5.2.min.js"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/moduleResources/foodprescription/js/style-table.js" /> --%>
+<link href="${pageContext.request.contextPath}/moduleResources/foodprescription/css/css-table.css" type="text/css" rel="stylesheet" />
 
 <table id="tblHouseholds"  class="lineTable">
 	<thead>    

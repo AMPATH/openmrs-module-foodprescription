@@ -1,9 +1,9 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
-<openmrs:require privilege="View Food Statistics" otherwise="/login.htm" redirect="/module/fdm/fdmStatistic.form" />
+<openmrs:require privilege="View Food Statistics" otherwise="/login.htm" redirect="/module/foodprescription/statistic.form" />
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="localHeader.jsp"%>
 
-<link href="${pageContext.request.contextPath}/moduleResources/fdm/css/css-table.css" type="text/css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/moduleResources/foodprescription/css/css-table.css" type="text/css" rel="stylesheet" />
 
 <style>
 	#openmrsSearchTable_wrapper{
@@ -104,7 +104,7 @@
 	
 	$j(function() {
 	SANAjax = function(){
-		$j.get("ports/fdmFoodPackagePort.form?includedRetired=" + false,
+		$j.get("ports/foodPackagePort.form?includedRetired=" + false,
 				function(dat1){
 					$j("#dataDisplay").html(dat1);
 				}

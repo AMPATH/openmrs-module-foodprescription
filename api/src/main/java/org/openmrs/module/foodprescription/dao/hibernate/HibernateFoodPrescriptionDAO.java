@@ -16,7 +16,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.DAOException;
-import org.openmrs.module.foodprescription.dao.FdmDAO;
+import org.openmrs.module.foodprescription.dao.FoodPrescriptionDAO;
 import org.openmrs.module.foodprescription.model.FoodCombination;
 import org.openmrs.module.foodprescription.model.FoodEncounter;
 import org.openmrs.module.foodprescription.model.FoodPackage;
@@ -32,7 +32,7 @@ import org.openmrs.module.household.model.Household;
  * @author jmwogi
  *
  */
-public class HibernateFdmDAO implements FdmDAO {
+public class HibernateFoodPrescriptionDAO implements FoodPrescriptionDAO {
 	
 	private SessionFactory sessionFactory;
 	

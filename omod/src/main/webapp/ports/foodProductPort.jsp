@@ -54,9 +54,9 @@
 					</td>
 					<td class="highlight">
 						<a href="#" onclick="javascript:onClickEditFoodProduct('${foodProductItem.id}','${foodProductItem.name}','${foodProductItem.individualized}')">
-							<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/edit.gif"/></a>
+							<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/edit.gif"/></a>
 						<a href="#" onclick="javascript:onClickDeleteFoodProduct('${foodProductItem.id}','${foodProductItem.name}')">
-							<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/></a>
+							<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/></a>
 						</td>
 					</tr>
 				</form>

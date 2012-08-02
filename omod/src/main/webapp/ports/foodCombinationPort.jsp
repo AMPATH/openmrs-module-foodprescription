@@ -49,7 +49,7 @@
 						</td>
 						<td class="highlight">
 							<a href="#" onclick="javascript:onClickDeleteFoodMap('${foodSourceMap.id}','${foodSourceMap.foodSource.code} - ${foodSourceMap.foodProduct.name}')">
-								<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/></a>
+								<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/></a>
 						</td>
 					</tr>
 				</form>

@@ -13,8 +13,8 @@ import org.openmrs.module.Activator;
  * @author jmwogi
  *
  */
-public class FdmActivator implements Activator {
-	private static Log log = LogFactory.getLog(FdmActivator.class);
+public class FoodPrescriptionActivator implements Activator {
+	private static Log log = LogFactory.getLog(FoodPrescriptionActivator.class);
 	/* (non-Javadoc)
 	 * @see org.openmrs.module.Activator#startup()
 	 */

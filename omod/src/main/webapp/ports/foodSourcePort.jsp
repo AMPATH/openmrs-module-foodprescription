@@ -52,9 +52,9 @@
 					</td>
 					<td class="highlight">
 						<a href="#" onclick="javascript:onClickEditEncounterType('${foodSourceItem.id}','${foodSourceItem.name}','${foodSourceItem.description}')">
-							<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/edit.gif"/></a>
+							<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/edit.gif"/></a>
 						<a href="#" onclick="javascript:onClickDeleteEncounterType('${foodSourceItem.id}','${foodSourceItem.name}')">
-							<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/></a>
+							<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/></a>
 					</td>
 				</tr>
 			</form>

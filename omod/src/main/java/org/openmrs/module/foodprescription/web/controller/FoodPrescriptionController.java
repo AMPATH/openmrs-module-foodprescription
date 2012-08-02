@@ -3,41 +3,36 @@ package org.openmrs.module.foodprescription.web.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Person;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.fdm.model.FoodCombination;
-import org.openmrs.module.fdm.model.FoodEncounter;
-import org.openmrs.module.fdm.model.FoodPackage;
-import org.openmrs.module.fdm.model.FoodPrescription;
-import org.openmrs.module.fdm.model.FoodSource;
-import org.openmrs.module.fdm.model.FoodProduct;
-import org.openmrs.module.fdm.model.FoodWeightRestriction;
-import org.openmrs.module.fdm.service.FdmService;
+import org.openmrs.module.foodprescription.model.FoodCombination;
+import org.openmrs.module.foodprescription.model.FoodEncounter;
+import org.openmrs.module.foodprescription.model.FoodPackage;
+import org.openmrs.module.foodprescription.model.FoodSource;
+import org.openmrs.module.foodprescription.model.FoodProduct;
+import org.openmrs.module.foodprescription.model.FoodWeightRestriction;
+import org.openmrs.module.foodprescription.service.FoodPrescriptionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class FdmController {
-	private static final Log log = LogFactory.getLog(FdmController.class);
+public class FoodPrescriptionController {
+	private static final Log log = LogFactory.getLog(FoodPrescriptionController.class);
 	Set <Person> personListMap = new HashSet<Person>();
 	
-    @RequestMapping("/module/fdm/fdmPrescription")
+    @RequestMapping("/module/foodprescription/prescription")
     public void asPageLoads(ModelMap map) {
     	
-    	FdmService service = Context.getService(FdmService.class);
+    	FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
     	
     	List<FoodProduct> allFoodsProduct = service.getFoodProduct(false);
     	List<FoodSource> allFoodsSource = service.getFoodSource(false);
@@ -46,9 +41,9 @@ public class FdmController {
 		map.addAttribute("allFoodsSource",allFoodsSource );
     }
     
-    @RequestMapping("/module/fdm/fdmConfiguration")
+    @RequestMapping("/module/foodprescription/configuration")
 	public String showConfigurationForm(ModelMap map) throws Exception {
-    	FdmService service = Context.getService(FdmService.class);
+    	FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		List<FoodSource> foodSource = service.getFoodSource(false);
 		FoodSource fs = new FoodSource();
 		if(foodSource.size() != 0)
@@ -68,12 +63,12 @@ public class FdmController {
 		map.addAttribute("foodPackage", allFoodPackage);
 		map.addAttribute("foodWeightRestriction", foodWeightRestriction);
 		
-    	return "/module/fdm/fdmConfiguration";
+    	return "/module/foodprescription/fdmConfiguration";
 	}
     
-    @RequestMapping("/module/fdm/fdmStatistic")
+    @RequestMapping("/module/foodprescription/statistic")
 	public void showStatisticForm(ModelMap map) throws Exception {
-    	FdmService service = Context.getService(FdmService.class);
+    	FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
     	//day = 1, week = 5, month = 30
     	List<FoodEncounter> foodEncounterDay=service.getFoodEncounterEnteredInLastFewDays(1);
     	/*map.addAttribute("dayCount", foodEncounterDurationMap(foodEncounterDay));

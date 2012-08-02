@@ -1,14 +1,14 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
-<openmrs:require privilege="Manage Food Configuration" otherwise="/login.htm" redirect="/module/fdm/fdmConfiguration.form" />
+<openmrs:require privilege="Manage Food Configuration" otherwise="/login.htm" redirect="/module/foodprescription/configuration.form" />
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
 <openmrs:htmlInclude file="/scripts/jquery/dataTables/css/dataTables_jui.css"/>
 <openmrs:htmlInclude file="/scripts/jquery/dataTables/js/jquery.dataTables.min.js"/>
 <openmrs:htmlInclude file="/dwr/util.js"/>
 <openmrs:htmlInclude file="/dwr/interface/DWRFoodService.js"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/moduleResources/fdm/js/jquery-1.5.2.min.js"></script>
-<link href="${pageContext.request.contextPath}/moduleResources/fdm/css/css-table.css" type="text/css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/moduleResources/fdm/css/vert_tab.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/moduleResources/foodprescription/js/jquery-1.5.2.min.js"></script>
+<link href="${pageContext.request.contextPath}/moduleResources/foodprescription/css/css-table.css" type="text/css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/moduleResources/foodprescription/css/vert_tab.css" type="text/css" rel="stylesheet" />
 <style>
 	#openmrsSearchTable_wrapper{
 	/* Removes the empty space between the widget and the Create New Patient section if the table is short */
@@ -59,17 +59,17 @@ $(document).ready(function() {
 			$j('#addFoodSource').slideToggle('slow');
 			event.preventDefault();
 		}
-			$j.get("ports/fdmFoodSourcePort.form?includedRetired=" + false,
+			$j.get("ports/foodSourcePort.form?includedRetired=" + false,
 					function(dat){
 						$j('#idFoodSource').html(dat);
 					}
 				);
-			$j.get("ports/fdmFoodPackagePort.form?includedRetired=" + false,
+			$j.get("ports/foodPackagePort.form?includedRetired=" + false,
 					function(dat1){
 						$j("#idFoodPackage").html(dat1);
 					}
 				);
-			$j.get("ports/fdmFoodCombinationPort.form?includedVoided=" + false,
+			$j.get("ports/foodCombinationPort.form?includedVoided=" + false,
 					function(dat){
 						$j('#idFoodMap').html(dat);
 					}
@@ -106,22 +106,22 @@ $(document).ready(function() {
 			$j('#addFoodProduct').slideToggle('slow');
 			event.preventDefault();
 		}
-			$j.get("ports/fdmFoodProductPort.form?includedRetired=" + false,
+			$j.get("ports/foodProductPort.form?includedRetired=" + false,
 					function(dat){
 						$j('#idFoodProduct').html(dat);
 					}
 				);
-			$j.get("ports/fdmFoodPackagePort.form?includedRetired=" + false,
+			$j.get("ports/foodPackagePort.form?includedRetired=" + false,
 					function(dat1){
 						$j("#idFoodPackage").html(dat1);
 					}
 				);
-			$j.get("ports/fdmFoodCombinationPort.form?includedVoided=" + false,
+			$j.get("ports/foodCombinationPort.form?includedVoided=" + false,
 					function(dat2){
 						$j('#idFoodMap').html(dat2);
 					}
 				);
-			$j.get("ports/fdmFoodWeightRestrictionPort.form?includedRetired=" + false,
+			$j.get("ports/foodWeightRestrictionPort.form?includedRetired=" + false,
 					function(dat3){
 						$j('#idFoodWeightRestriction').html(dat3);
 					}
@@ -154,7 +154,7 @@ $(document).ready(function() {
 			$j('#addFoodMap').slideToggle('slow');
 			event.preventDefault();
 		}
-			$j.get("ports/fdmFoodCombinationPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
+			$j.get("ports/foodCombinationPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
 					function(dat){
 						$j('#idFoodMap').html(dat);
 					}
@@ -178,7 +178,7 @@ $(document).ready(function() {
 		}
 	}
 	function returnPackage(data){
-		$j.get("ports/fdmFoodPackagePort.form?includedRetired=" + false,
+		$j.get("ports/foodPackagePort.form?includedRetired=" + false,
 				function(dat){
 					$j("#idFoodPackage").html(dat);
 				}
@@ -345,9 +345,9 @@ $(document).ready(function() {
 											</td>
 											<td class="highlight">
 												<a href="#" onclick="javascript:onClickEditFoodSource('${foodSourceItem.id}','${foodSourceItem.code}','${foodSourceItem.name}','${foodSourceItem.description}')">
-													<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/edit.gif"/></a>
+													<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/edit.gif"/></a>
 												<a href="#" onclick="javascript:onClickDeleteFoodSource('${foodSourceItem.id}','${foodSourceItem.name}')">
-													<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/></a>
+													<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/></a>
 											</td>
 										</tr>
 									</form>
@@ -385,13 +385,13 @@ $(document).ready(function() {
 						function pullRetiredFS(){
 							var val = document.getElementById("includeRetiredFS");
 							if(val.checked){
-								$j.get("ports/fdmFoodSourcePort.form?includedRetired=" + true,
+								$j.get("ports/foodSourcePort.form?includedRetired=" + true,
 										function(dat){
 											$j('#idFoodSource').html(dat);
 										}
 									);
 							}else{
-								$j.get("ports/fdmFoodSourcePort.form?includedRetired=" + false,
+								$j.get("ports/foodSourcePort.form?includedRetired=" + false,
 										function(dat){
 											$j('#idFoodSource').html(dat);
 										}
@@ -508,9 +508,9 @@ $(document).ready(function() {
 											</td>
 											<td class="highlight">
 												<a href="#" onclick="javascript:onClickEditFoodProduct('${foodProductItem.id}','${foodProductItem.name}','${foodProductItem.individualized}')">
-													<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/edit.gif"/></a>
+													<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/edit.gif"/></a>
 												<a href="#" onclick="javascript:onClickDeleteFoodProduct('${foodProductItem.id}','${foodProductItem.name}')">
-													<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/></a>
+													<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/></a>
 											</td>
 										</tr>
 									</form>
@@ -548,13 +548,13 @@ $(document).ready(function() {
 						function pullRetiredFP(){
 							var val = document.getElementById("includeRetiredFP");
 							if(val.checked){
-								$j.get("ports/fdmFoodProductPort.form?includedRetired=" + true,
+								$j.get("ports/foodProductPort.form?includedRetired=" + true,
 										function(dat){
 											$j('#idFoodProduct').html(dat);
 										}
 									);
 							}else{
-								$j.get("ports/fdmFoodProductPort.form?includedRetired=" + false,
+								$j.get("ports/foodProductPort.form?includedRetired=" + false,
 										function(dat){
 											$j('#idFoodProduct').html(dat);
 										}
@@ -680,7 +680,7 @@ $(document).ready(function() {
 											</td>
 											<td class="highlight">
 												<a href="#" onclick="javascript:onClickDeleteFoodMap('${foodSourceMap.id}','${foodSourceMap.foodSource.code} - ${foodSourceMap.foodProduct.name}')">
-													<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/></a>
+													<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/></a>
 											</td>
 										</tr>
 									</form>
@@ -709,13 +709,13 @@ $(document).ready(function() {
 							var val = document.getElementById("includeVoidedFC");
 							var valSource = document.getElementById("foodSourceChange").value;
 							if(val.checked){
-								$j.get("ports/fdmFoodCombinationPort.form?includedVoided=" + true + "&foodSrc=" + valSource,
+								$j.get("ports/foodCombinationPort.form?includedVoided=" + true + "&foodSrc=" + valSource,
 										function(dat){
 											$j('#idFoodMap').html(dat);
 										}
 									);
 							}else{
-								$j.get("ports/fdmFoodCombinationPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
+								$j.get("ports/foodCombinationPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
 										function(dat){
 											$j('#idFoodMap').html(dat);
 										}
@@ -743,13 +743,13 @@ $(document).ready(function() {
 						function pullRetiredFPack(){
 							var val = document.getElementById("includeRetiredFRest");
 							if(val.checked){
-								$j.get("ports/fdmFoodPackagePort.form?includedRetired=" + true,
+								$j.get("ports/foodPackagePort.form?includedRetired=" + true,
 										function(dat){
 											$j("#idFoodPackage").html(dat);
 										}
 									);
 							}else{
-								$j.get("ports/fdmFoodPackagePort.form?includedRetired=" + false,
+								$j.get("ports/foodPackagePort.form?includedRetired=" + false,
 										function(dat){
 											$j("#idFoodPackage").html(dat);
 										}
@@ -843,7 +843,7 @@ $(document).ready(function() {
 							function pullListFC(){
 								var valSource = document.getElementById("foodSourcePackage").value;
 								
-								$j.get("ports/fdmFoodComPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
+								$j.get("ports/foodComPort.form?includedVoided=" + false + "&foodSrc=" + valSource,
 										function(dat){
 											$j('#idFoodPackageMap').html(dat);
 										}
@@ -862,7 +862,7 @@ $(document).ready(function() {
 								}
 							}
 							function refreshFoodPackage(data){
-								$j.get("ports/fdmFoodPackagePort.form?includedRetired=" + false,
+								$j.get("ports/foodPackagePort.form?includedRetired=" + false,
 										function(dat){
 											$j('#idFoodPackage').html(dat);
 										}
@@ -967,7 +967,7 @@ $(document).ready(function() {
 											<openmrs:formatDate date="${foodPack.dateCreated}"/><br />
 										</td>
 										<td class="highlight">
-											<img onclick="javascript:onClickDeleteFoodPackage('${foodPack.id}','${foodPack.name} ')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/>
+											<img onclick="javascript:onClickDeleteFoodPackage('${foodPack.id}','${foodPack.name} ')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/>
 										</td>
 									</tr>
 								</c:forEach>
@@ -1007,7 +1007,7 @@ $(document).ready(function() {
 							DWRFoodService.addEditFoodWeightRestriction( parArrFP, returnFoodWeightRestriction);
 						}
 						function returnFoodWeightRestriction(data){
-							$j.get("ports/fdmFoodWeightRestrictionPort.form?includedRetired=" + false,
+							$j.get("ports/foodWeightRestrictionPort.form?includedRetired=" + false,
 									function(dat3){
 										$j('#idFoodWeightRestriction').html(dat3);
 									}
@@ -1047,13 +1047,13 @@ $(document).ready(function() {
 						function pullRetiredFRest(){
 							var val = document.getElementById("includeRetiredFRest");
 							if(val.checked){
-								$j.get("ports/fdmFoodWeightRestrictionPort.form?includedRetired=" + true,
+								$j.get("ports/foodWeightRestrictionPort.form?includedRetired=" + true,
 										function(dat){
 											$j('#idFoodWeightRestriction').html(dat);
 										}
 									);
 							}else{
-								$j.get("ports/fdmFoodWeightRestrictionPort.form?includedRetired=" + false,
+								$j.get("ports/foodWeightRestrictionPort.form?includedRetired=" + false,
 										function(dat){
 											$j('#idFoodWeightRestriction').html(dat);
 										}
@@ -1154,8 +1154,8 @@ $(document).ready(function() {
 											<openmrs:formatDate date="${foodRestriction.dateCreated}"/><br />
 										</td>
 										<td class="highlight">
-											<img onclick="javascript:onClickEditFoodWeightRestriction('${foodRestriction.id}','${foodRestriction.foodProduct.id}','${foodRestriction.quantity}','${foodRestriction.startAge}','${foodRestriction.stopAge}')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/edit.gif"/>
-											<img onclick="javascript:onClickDeleteFoodWeightRestriction('${foodRestriction.id}','${foodRestriction.foodProduct.name} ')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/>
+											<img onclick="javascript:onClickEditFoodWeightRestriction('${foodRestriction.id}','${foodRestriction.foodProduct.id}','${foodRestriction.quantity}','${foodRestriction.startAge}','${foodRestriction.stopAge}')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/edit.gif"/>
+											<img onclick="javascript:onClickDeleteFoodWeightRestriction('${foodRestriction.id}','${foodRestriction.foodProduct.name} ')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/>
 										</td>
 									</tr>
 								</c:forEach>
@@ -1168,7 +1168,7 @@ $(document).ready(function() {
 					<strong>General Properties</strong>
 					<br><br>
 					<openmrs:portlet url="globalProperties"
-					parameters="propertyPrefix=fdm|excludePrefix=fdm.started;fdm.mandatory;"/>
+					parameters="propertyPrefix=foodprescription|excludePrefix=foodprescription.started;foodprescription.mandatory;"/>
 				</div>
 			</div>
 		</div>

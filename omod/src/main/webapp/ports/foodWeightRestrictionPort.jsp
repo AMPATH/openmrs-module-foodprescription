@@ -36,8 +36,8 @@
 					<openmrs:formatDate date="${foodRestriction.dateCreated}"/><br />
 				</td>
 				<td class="highlight">
-					<img onclick="javascript:onClickEditFoodWeightRestriction('${foodRestriction.id}','${foodRestriction.foodProduct.id}','${foodRestriction.quantity}','${foodRestriction.startAge}','${foodRestriction.stopAge}')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/edit.gif"/>
-					<img onclick="javascript:onClickDeleteFoodWeightRestriction('${foodRestriction.id}','${foodRestriction.foodProduct.name} ')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/>
+					<img onclick="javascript:onClickEditFoodWeightRestriction('${foodRestriction.id}','${foodRestriction.foodProduct.id}','${foodRestriction.quantity}','${foodRestriction.startAge}','${foodRestriction.stopAge}')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/edit.gif"/>
+					<img onclick="javascript:onClickDeleteFoodWeightRestriction('${foodRestriction.id}','${foodRestriction.foodProduct.name} ')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/>
 				</td>
 			</tr>
 		</c:forEach>

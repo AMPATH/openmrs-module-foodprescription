@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
-<openmrs:require privilege="Manage Food Prescriptions" otherwise="/login.htm" redirect="/module/fdm/fdmPrescription.form" />
+<openmrs:require privilege="Manage Food Prescriptions" otherwise="/login.htm" redirect="/module/foodprescription/prescription.form" />
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="localHeader.jsp"%>
 
@@ -41,11 +41,9 @@
 				{fieldName:"birthdateString", header:omsgs.birthdate},
 			],
 			{
-			  searchLabel: '<spring:message code="Patient.searchBox" javaScriptEscape="true"/>'
-			  <c:if test="${not empty param.phrase}">
-			      , searchPhrase: '<spring:message text="${ param.phrase }" javaScriptEscape="true"/>'
-			  </c:if>
-			});
+			  searchLabel: '<spring:message code="Patient.searchBox" javaScriptEscape="true"/>', 
+			  searchPhrase: '<spring:message text="${ param.phrase }" javaScriptEscape="true"/>'
+		  });
 		
 		//set the focus to the first input box on the page(in this case the text box for the search widget)
 		var inputs = document.getElementsByTagName("input");
@@ -56,8 +54,8 @@
 	});
 
 	function doSelectionHandler(index, data) {
-		$j('#divSelect').html('<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/loading.gif"/>');
-		$j.get("ports/fdmSelectedPersonHouseholdPort.form?personid=" + data.patientId,
+		$j('#divSelect').html('<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/loading.gif"/>');
+		$j.get("ports/selectedPersonHouseholdPort.form?personid=" + data.patientId,
 				function(data){
 					$j('#divSelect').html(data);
 				}
@@ -72,19 +70,20 @@
 	}
 	
 	function forwardMem(datain){
-		$j('#populate').html('<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/loading.gif"/>');
-		$j.get("ports/fdmPopulatePrescriptionPort.form?hhmid=" + datain,
+		$j('#populate').html('<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/loading.gif"/>');
+		$j.get("ports/populatePrescriptionPort.form?hhmid=" + datain,
 				function(data){
 					$j('#populate').html(data);
 				}
 			);
 	}
-	function selectFdmProvider(userid,provider){
+	
+	function selectProvider(userid,provider){
 		var providerId=null
 		if(provider !=null){
 			providerId=provider.systemId;
 		}
-		$j("#fdmprovider").val(providerId);
+		$j("#provider").val(providerId);
 		
 	}
 	

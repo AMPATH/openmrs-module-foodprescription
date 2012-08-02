@@ -30,7 +30,7 @@
 					<openmrs:formatDate date="${foodPack.dateCreated}"/><br />
 				</td>
 				<td class="highlight">
-					<img onclick="javascript:onClickDeleteFoodPackage('${foodPack.id}','${foodPack.name} ')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/trash.gif"/>
+					<img onclick="javascript:onClickDeleteFoodPackage('${foodPack.id}','${foodPack.name} ')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/trash.gif"/>
 				</td>
 			</tr>
 		</c:forEach>

@@ -9,21 +9,20 @@ import java.util.Map;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.Extension;
 import org.openmrs.module.web.extension.AdministrationSectionExt;
-import org.openmrs.util.OpenmrsConstants;
 
 
 /**
  * @author jmwogi
  *
  */
-public class FdmAdminExt extends AdministrationSectionExt {
+public class FoodPrescriptionAdminExt extends AdministrationSectionExt {
 	
 	public Extension.MEDIA_TYPE getMediaType() {
 		return Extension.MEDIA_TYPE.html;
 	}
 	
 	public String getTitle() {
-		return "fdm.manage.title";
+		return "foodprescription.manage.title";
 	}
 	
 	public String getRequiredPrivilege() {
@@ -34,11 +33,11 @@ public class FdmAdminExt extends AdministrationSectionExt {
 		// Using linked hash map to keep order of links
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		if(Context.getAuthenticatedUser().hasPrivilege("Manage Food Configuration"))
-			map.put("module/fdm/fdmConfiguration.form", "Configuration");
+			map.put("module/foodprescription/configuration.form", "Configuration");
 		if(Context.getAuthenticatedUser().hasPrivilege("Manage Food Prescriptions"))
-			map.put("module/fdm/fdmPrescription.form", "Prescription");
+			map.put("module/foodprescription/prescription.form", "Prescription");
 		if(Context.getAuthenticatedUser().hasPrivilege("View Food Statistics"))
-			map.put("module/fdm/fdmStatistic.form", "Statistics");
+			map.put("module/foodprescription/statistic.form", "Statistics");
 		return map;
 	}
 	

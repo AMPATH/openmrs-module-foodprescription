@@ -7,7 +7,7 @@ import java.util.Set;
 
 import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.foodprescription.service.FdmService;
+import org.openmrs.module.foodprescription.service.FoodPrescriptionService;
 
 
 public class FoodPackage extends BaseOpenmrsMetadata{
@@ -44,7 +44,7 @@ public class FoodPackage extends BaseOpenmrsMetadata{
 		this.foodPackageCombination = foodPackageCombination;
 	}
 	public List<FoodPackageCombination> getFoodPackageCombination() {
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		List<FoodPackageCombination> ret = new ArrayList<FoodPackageCombination>();
 		
 		ret.addAll(service.getFoodPackageCombinationByPackage(this,false));

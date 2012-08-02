@@ -20,7 +20,7 @@
 					<th>${ind.index + 1}</th>
 					<td class="highlight">
 						${foodPack.foodCombination.foodProduct.name} - ${foodPack.foodCombination.foodSource.code}
-						<img onclick="javascript:showDivDisp('${foodPack.id}')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/detail.png" alt="Members" title="Members who received food" align="right"/>
+						<img onclick="javascript:showDivDisp('${foodPack.id}')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/detail.png" alt="Members" title="Members who received food" align="right"/>
 						<div id="hdnDispl${foodPack.id}" style="display: none; background-color: #F8EEEE; padding:1px 1px; border-radius:3px; -moz-border-radius:3px;">
 							<c:forEach var="entry" items="${prescPersons}">
 								<c:if test="${entry.key == foodPack.id}">
@@ -35,7 +35,7 @@
 						 ${foodPack.quantity} &nbsp;
 						 <c:choose>
 	                        <c:when test="${not prescEncounterPicked}">
-						 		<img onclick="javascript:showDiv('${foodPack.id}')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/edit.gif" alt="Edit" />
+						 		<img onclick="javascript:showDiv('${foodPack.id}')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/edit.gif" alt="Edit" />
 						 	</c:when>
 	                        <c:otherwise>
 	                        </c:otherwise>
@@ -55,11 +55,11 @@
 	                        	<c:choose>
 			                        <c:when test="${foodPack.picked}">
 			                        
-			                            <img src="${pageContext.request.contextPath}/moduleResources/fdm/images/tick.png" alt="[Picked]" />
+			                            <img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/tick.png" alt="[Picked]" />
 			                            
 			                        </c:when>
 			                        <c:otherwise>
-										<img src="${pageContext.request.contextPath}/moduleResources/fdm/images/minus.png" alt="[Picked]" />
+										<img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/minus.png" alt="[Picked]" />
 			                        </c:otherwise>
 		                        </c:choose>
 	                            
@@ -146,7 +146,7 @@
 		
 		function picked(id){
 			$j('#popPrescription').hide();
-			$j.get("ports/fdmSavedPrescriptionPort.form?encounter=" + id,
+			$j.get("ports/savedPrescriptionPort.form?encounter=" + id,
 					function(dat){
 						$j('#popPrescription').html(dat);
 						$j('#popPrescription').show();
@@ -183,7 +183,7 @@
 		function returnNewPickup(data){
 			if(data){
 				var id = document.getElementById("hdnPickedEnc").value;
-				$j.get("ports/fdmSavedPrescriptionPort.form?encounter=" + id,
+				$j.get("ports/savedPrescriptionPort.form?encounter=" + id,
 						function(dat){
 							$j('#popPrescription').html(dat);
 							//$j('#popPrescription').show();

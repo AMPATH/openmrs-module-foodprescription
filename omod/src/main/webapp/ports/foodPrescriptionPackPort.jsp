@@ -18,7 +18,7 @@
 		<th>${ind.index + 1}
 			<c:choose>
 				<c:when test="${foodpack.foodCombination.foodProduct.individualized}">
-					<img onclick="javascript:showDivHere('${foodpack.foodCombination.id}')" src="${pageContext.request.contextPath}/moduleResources/fdm/images/individual.png" alt="Populate individuals" />
+					<img onclick="javascript:showDivHere('${foodpack.foodCombination.id}')" src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/individual.png" alt="Populate individuals" />
 			 	</c:when>
                 <c:otherwise>
                 </c:otherwise>
@@ -36,7 +36,7 @@
 								<td>
 									<c:choose>
 		                                <c:when test="${householdMembers.householdMembershipHeadship }">
-		                                    <img src="${pageContext.request.contextPath}/moduleResources/fdm/images/tick.png" alt="[HEAD/INDEX]" />
+		                                    <img src="${pageContext.request.contextPath}/moduleResources/foodprescription/images/tick.png" alt="[HEAD/INDEX]" />
 		                                </c:when>
 		                                <c:otherwise>
 		                                </c:otherwise>

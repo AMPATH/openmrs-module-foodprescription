@@ -17,11 +17,11 @@ import org.openmrs.module.household.model.Household;
 
 
 /**
- * Contact for database operation on fdm
+ * Contact for database operation on Food Prescription Module
  *  
  * @author jmwogi
  */
-public interface FdmDAO {
+public interface FoodPrescriptionDAO {
 	
 	public boolean saveFoodProduct(FoodProduct foodProduct);
 	public FoodProduct getFoodProduct(int id);

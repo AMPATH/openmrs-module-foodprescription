@@ -7,8 +7,8 @@ import org.openmrs.Location;
 import org.openmrs.Person;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.fdm.model.*;
-import org.openmrs.module.fdm.service.FdmService;
+import org.openmrs.module.foodprescription.model.*;
+import org.openmrs.module.foodprescription.service.FoodPrescriptionService;
 import org.openmrs.module.household.model.Household;
 import org.openmrs.module.household.model.HouseholdMembership;
 import org.openmrs.module.household.service.HouseholdService;
@@ -20,12 +20,12 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class DWRFoodService {
+public class DWRFoodPrescriptionService {
 	
-	private static final Log log = LogFactory.getLog(DWRFoodService.class);
+	private static final Log log = LogFactory.getLog(DWRFoodPrescriptionService.class);
 	
 	public boolean addEditFoodSource(String [] passedArr){
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		
 		if(passedArr[0].equals("1")){
 			FoodSource fs = new FoodSource(passedArr[2], passedArr[3], passedArr[4]);
@@ -44,7 +44,7 @@ public class DWRFoodService {
 	}
 	
 	public boolean addEditFoodProduct(String [] passedArr){
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		
 		if(passedArr[0].equals("1")){
 			FoodProduct fp = new FoodProduct(passedArr[2]);
@@ -77,7 +77,7 @@ public class DWRFoodService {
 		HouseholdService service = Context.getService(HouseholdService.class);
 		List<HouseholdMembership> householdMem = service.getAllHouseholdMembershipsByPerson(p);
 		
-		String definitionCode = Context.getAdministrationService().getGlobalProperty("fdm.householdDefinitionCode");
+		String definitionCode = Context.getAdministrationService().getGlobalProperty("foodprescription.householdDefinitionCode");
 		String []def = null;
 		if(definitionCode.contains(","))
 			def = definitionCode.split(",");
@@ -93,7 +93,7 @@ public class DWRFoodService {
 	}
 	
 	public boolean addEditFoodCombination(String [] passedArr){
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		
 		if(passedArr[0].equals("1")){
 			FoodSource fs = service.getFoodSource(Integer.parseInt(passedArr[2]));
@@ -127,7 +127,7 @@ public class DWRFoodService {
 	}
 	
 	public boolean populatePackage(String []pack){
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		
 		FoodPackage fp = new FoodPackage();
 		
@@ -160,7 +160,7 @@ public class DWRFoodService {
 			return false;
 	}
 	public boolean addFoodPrescription(String [] arrData) throws ParseException{
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		
 		Household household = Context.getService(HouseholdService.class).getHouseholdGroup(Integer.parseInt(arrData[0]));
 		Location location = Context.getService(LocationService.class).getLocation(Integer.parseInt(arrData[1]));
@@ -300,7 +300,7 @@ public class DWRFoodService {
 	
 	public boolean pickedAllPrescription(String arrData) throws ParseException{
 		boolean pick = false;
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		
 		if (arrData != null){
 			FoodEncounter foodEncounter = service.getFoodEncounter(arrData);
@@ -324,7 +324,7 @@ public class DWRFoodService {
 	
 	public boolean pickedSomePrescription(String [] arrData) throws ParseException{
 		Context.clearSession();
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		boolean pick = false;
 		List<String> presc = new ArrayList<String>();
 		if(StringUtils.isNotEmpty(arrData[1])){
@@ -343,7 +343,7 @@ public class DWRFoodService {
 			fp.add(pr);
 		}
 		try {
-			FdmService fs = Context.getService(FdmService.class);
+			FoodPrescriptionService fs = Context.getService(FoodPrescriptionService.class);
 	        FoodEncounter foodEncounter = fs.getFoodEncounter(arrData[0]);
 	        foodEncounter.setPicked(true);
 			if(!fs.saveFoodEncounter(foodEncounter))
@@ -358,7 +358,7 @@ public class DWRFoodService {
 	public boolean pickedNewPrescription( String [] arrData) throws ParseException{
 		Context.clearSession();
 		
-			FdmService fs = Context.getService(FdmService.class);
+			FoodPrescriptionService fs = Context.getService(FoodPrescriptionService.class);
 			List<String> passedCombination = new ArrayList<String>();
 			FoodEncounter foodEncounter = fs.getFoodEncounter(Integer.parseInt(arrData[0]));
 			Person provider = Context.getPersonService().getPerson(Integer.parseInt(arrData[2]));
@@ -378,7 +378,7 @@ public class DWRFoodService {
 					foodCombination.add(fc);
 		        }
 			}
-			FdmService service = Context.getService(FdmService.class);
+			FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 			Household hs = foodEncounter.getHousehold();
 			String memberID = "";
 			List<HouseholdMembership> hmem = Context.getService(HouseholdService.class).getAllHouseholdMembershipsByGroup(hs);
@@ -410,7 +410,7 @@ public class DWRFoodService {
 	
 	public boolean saveEditedQuantity( String [] arrData){
 		boolean saved = false;
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		FoodPrescription foodPrescription = service.getFoodPrescription(Integer.parseInt(arrData[0]));
 		foodPrescription.setQuantity(Double.parseDouble(arrData[1]));
 		saved = service.saveFoodPrescription(foodPrescription);
@@ -418,13 +418,13 @@ public class DWRFoodService {
 	}
 	
 	public boolean purgeFoodPackage(String [] arrData){
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		FoodPackage foodPackage = service.getFoodPackage(Integer.parseInt(arrData[0]));
 		return service.purgeFoodPackage(foodPackage, arrData[1]);
 	}
 	
 	public boolean addEditFoodWeightRestriction( String [] arrData){
-		FdmService service = Context.getService(FdmService.class);
+		FoodPrescriptionService service = Context.getService(FoodPrescriptionService.class);
 		boolean saved = false;
 		int firstTask = Integer.parseInt(arrData[0]);
 		String quantity = "0";
