@@ -2,57 +2,55 @@
 <!DOCTYPE module PUBLIC "-//OpenMRS//DTD OpenMRS Config 1.0//EN" "http://resources.openmrs.org/doctype/config-1.3.dtd">
 <module configVersion="1.3">
 	
-	<!-- logic Module Properties -->
 	<id>@MODULE_ID@</id>
 	<name>@MODULE_NAME@</name>
 	<version>@MODULE_VERSION@</version>
 	<package>@MODULE_PACKAGE@</package>
-	<author>Jonah S. Mwogi, Nicholas Ingosi</author>
-	<description>This module is meant to aid Food Distribution Department to capture prescriptions
+	<author>AMPATH Developers</author>
+	<description>
+		This module provides functionality for writing food-based prescriptions and maintaining inventory.
 	</description>
-	<activator>org.openmrs.module.foodprescription.FdmActivator</activator>
+	
+	<activator>@MODULE_PACKAGE@.FoodPrescriptionActivator</activator>
 	<updateURL>https://dev.openmrs.org/modules/download/@MODULE_ID@/update.rdf</updateURL>
 
-	<!-- This module also works with the 1.6.x branch starting from 1.6.3.17711, but we can't release a
-		 version like that to the repository, because it would auto-upgrade 1.7.0 and 1.7.1, and that
-		 would break things. The following line can be commented out to build that special version -->
-	<!-- <require_version>1.6.3.17711</require_version> -->
-	<require_version>1.6.1</require_version>
+	<require_version>1.8.2</require_version>
 	<require_modules>
-		<require_module version="1.0.0">org.openmrs.module.household</require_module>
+		<require_module version="1.0.1">org.openmrs.module.household</require_module>
 	</require_modules>
 	
-    <extension>
-        <point>org.openmrs.admin.list</point>
-        <class>org.openmrs.module.foodprescription.ext.FdmAdminExt</class>
-    </extension>
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>org.openmrs.module.foodprescription.ext.FoodPrescriptionAdminExt</class>
+	</extension>
     
     <!-- Privileges -->
-    <privilege>
-	    <name>View Food Prescription Module</name>
-	    <description>View Food Prescription Module</description>
-	</privilege>
-    <privilege>
-	    <name>Manage Food Configuration</name>
-	    <description>Manage Food Configuration</description>
+	<privilege>
+		<name>View Food Prescription Module</name>
+		<description>View Food Prescription Module</description>
 	</privilege>
 	<privilege>
-	    <name>Manage Food Prescriptions</name>
-	    <description>Manage Food Prescriptions</description>
+		<name>Manage Food Configuration</name>
+		<description>Manage Food Configuration</description>
 	</privilege>
 	<privilege>
-	    <name>View Food Statistics</name>
-	    <description>View Food Statistics</description>
+		<name>Manage Food Prescriptions</name>
+		<description>Manage Food Prescriptions</description>
+	</privilege>
+	<privilege>
+		<name>View Food Statistics</name>
+		<description>View Food Statistics</description>
 	</privilege>
      <!-- /Privileges -->
+	 
     <!-- Global Properties -->
 	<globalProperty>
-		<property>foodprescription.householdDefinitionCode</property>
+		<property>@MODULE_ID@.householdDefinitionCode</property>
 		<defaultValue></defaultValue>
 		<description>Household Definition Code for Food Distribution</description>
 	</globalProperty>
 	<globalProperty>
-		<property>foodprescription.Statistics_Interval_In_Days</property>
+		<property>@MODULE_ID@.statisticsIntervalInDays</property>
 		<defaultValue>1</defaultValue>
 		<description>Number of days to retrieve statistics</description>
 	</globalProperty>
@@ -61,7 +59,7 @@
 	<dwr>
 		<allow>
 			<create creator="new" javascript="DWRFoodService">
-				<param name="class" value="@MODULE_PACKAGE@.web.dwr.DWRFoodService"/>
+				<param name="class" value="@MODULE_PACKAGE@.web.dwr.DWRFoodPrescriptionService"/>
 				<include method="addEditFoodSource" />
 				<include method="addEditFoodProduct" />
 				<include method="getHouseholdsByPersonID"/>
@@ -75,12 +73,12 @@
 				<include method="saveEditedQuantity"/>
 				<include method="purgeFoodPackage"/>
 			</create>
-			<convert match="org.openmrs.module.foodprescription.model.FoodSource" converter="bean" />
-			<convert match="org.openmrs.module.foodprescription.model.FoodProduct" converter="bean" />
+			<convert match="@MODULE_PACKAGE@.model.FoodSource" converter="bean" />
+			<convert match="@MODULE_PACKAGE@.model.FoodProduct" converter="bean" />
 		</allow>
 		<signatures>
 			<![CDATA[
-			import @MODULE_PACKAGE@.@MODULE_ID@.web.dwr.DWRFoodService;
+			import @MODULE_PACKAGE@.web.dwr.DWRFoodPrescriptionService;
 			DWRFoodService.addEditFoodSource(String [] passedArr);
 			DWRFoodService.addEditFoodProduct(String [] passedArr);
 			DWRFoodService.getHouseholdsByPersonID(String personID);
@@ -101,6 +99,7 @@
 		<lang>en</lang>
 		<file>messages.properties</file>
 	</messages>
+	
 	<mappingFiles>
 		${omodHbmConfig}
 	</mappingFiles>

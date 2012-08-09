@@ -20,7 +20,6 @@ import org.openmrs.module.foodprescription.model.FoodWeightRestriction;
 import org.openmrs.module.foodprescription.service.FoodPrescriptionService;
 import org.openmrs.module.household.model.Household;
 
-
 /**
  *  @author jmwogi
  *
@@ -31,12 +30,8 @@ public class FoodPrescriptionServiceImpl extends BaseOpenmrsService implements F
 	
 	private FoodPrescriptionDAO dao;
 
-	public void setDAO(FoodPrescriptionDAO dao) {
+	public void setDao(FoodPrescriptionDAO dao) {
 	    this.dao = dao;
-    }
-
-	public FoodPrescriptionDAO getDAO() {
-	    return dao;
     }
 
 	public boolean saveFoodProduct(FoodProduct foodProduct) {
